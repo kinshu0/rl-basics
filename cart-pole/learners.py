@@ -58,9 +58,6 @@ class ActionValueIterationBot(CartPolePlayer):
         
         return action
     
-    def set_plotter(self, plotter):
-        self.plotter = plotter
-    
     def update_state(self, obs):
         pos, v, theta, w = obs
         theta_bin = int((theta - self.theta_lb) / self.theta_bin_size)
@@ -100,5 +97,6 @@ class ActionValueIterationBot(CartPolePlayer):
         self.explore_p = max(self.explore_p - 0.01, .20)
 
         self.time += 1
-        
-        # self.plotter.draw(self.utility, ['angle', 'angular velocity', 'action'])
+
+    def draw(self):
+        return self.utility
