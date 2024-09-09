@@ -7,10 +7,12 @@ FPS = 10
 
 class CartPoleGame:
     def __init__(self, player: CartPolePlayer, episodes: int) -> None:
-        self.env = gym.make('CartPole-v1', render_mode="rgb_array")
+        self.env: gym.Env = gym.make('CartPole-v1', render_mode="rgb_array")
         observation, info = self.env.reset()
 
         self.player = player
+        self.player.set_game(self)
+        self.player.discretize_obs_action_space()
         self.running = False
 
         self.episodes_remaining = episodes
